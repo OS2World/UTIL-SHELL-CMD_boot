@@ -1,0 +1,120 @@
+Here's yet ANOTHER utility in an endless stream of simple-but-highly-useful
+programs by me.
+
+
+WHAT IS THIS THING, ANYWAYS?
+----------------------------
+
+I call this one CMD boot. It does this:
+
+[c:\nifties]cmdboot.exe
+
+CMD boot v1.0
+  Copyright (c) Lighting and Sound Technologies, 1996
+  Written by Ryan C. Gordon.
+
+Will run c:\os2\cmd.exe if key is pressed within 5 seconds...
+5...4...3...2...1...
+
+
+Get the point? It allows you to run an executable, provided you hit a key
+within X seconds. 
+
+Ok, so where is THIS one gonna come in handy? Easy. Stick this at the end of
+your config.sys:
+
+CALL=x:\path\cmdboot.exe
+
+(where "x:\path\" is where you stuck cmdboot.exe...)
+
+And everytime you boot OS/2, it'll give you the option to stop, after loading
+all your drivers, but just before the Workplace Shell loads, and drop to a
+command prompt. This is a good precaution against things such as programs that
+screw up something crucial to the WPS (such as a new video driver that doesn't
+work). With this, if the need arises, smack a key before the seconds count
+hits zero, and you can go to a command prompt and fix things. If the need
+hasn't arisen, in a mattter of seconds, the bootup process will continue as
+normal.
+
+This is also handy for manipulating DLLs and other files that the Workplace
+Shell locks when loaded. CMD boot will put you at a cmd prompt before these
+files are locked, so you may replace them, or remove them.
+
+
+CMD boot has other handy uses, for example, you may want to run an Antivirus
+program at bootup time, but you don't want to waste ALL THAT TIME whenever you
+hit CTRL-ALT-DEL (After all, if you just checked for viruses, and reboot
+without doing anything that could infect your system, then why check again?)
+Now you need only run that program when you feel like it.
+
+CMD boot is also handy in batch files. As always, be creative.
+
+
+HOW TO INSTALL:
+---------------
+0.5) Make sure the EMX runtime is installed. The binaries and installation
+     instructions for this package can be found at
+         ftp://hobbes.nmsu.edu/unix/emx09b/emxrt.zip
+
+     Once you install this, continue on to #1...
+
+  1) Unzip CMD boot's archive. You've probably already done this if you are
+     reading this text file.
+  2) Copy cmdboot.exe somewhere. (Preferably, but necessarily, into your path.)
+  3) To have it optionally drop you to a CMD.EXE prompt at bootup time, add this
+     line to the very end of your CONFIG.SYS:
+
+CALL=x:\path\cmdboot.exe
+
+(where "x:\path\" is where you've hidden cmdboot.exe.)
+
+4) Email Ryan at warped42@ix.netcom.com and tell him you like this program.
+
+
+
+COMMAND LINE OPTIONS:
+---------------------
+ USAGE : cmdboot.exe [timetowait] [progtorun.exe] [arguments...]
+
+ [timetowait] is optional # of seconds to wait before running.
+               Defaults to 5. You must specify this option if you want to
+               specify...
+ [progtorun.exe] Optional executable to run. Defaults to c:\os2\cmd.exe
+                 you must specify this option if you want to specify...
+ [arguments...] variable number of arguments to pass to [progtorun.exe]
+
+
+
+LIMITATIONS:
+------------
+Ok, no program is perfect, and here's what this program can NOT do:
+1) If you boot to CMD.EXE without the workplace shell loaded, you cannot run
+   DOS apps, WinOS/2 apps, or presentation manager apps. Just OS/2 text-based
+   (VIO) programs. Full screen or windowed is fine. They both work full screen
+   in this context.
+2) You can't start PM, DOS, or WinOS/2 apps directly from CMD boot. However,
+   you can start "cmd.exe /c mypmProg.exe" from CMD boot. This'll run them.
+   That is, if you aren't falling into the parameters of limitation #1.
+
+Er...that's all, I think.
+
+
+
+FINAL THOUGHTS ON THE MATTER:
+-----------------------------
+The source code is included. This one is incredibly simple. I couldn't find
+ANY docs on the Kbd* APIs, but I think I've found a good way to see if a key
+has been pressed (best I could do with nothing more than os2emx.h for
+documentation. :)  )...let me know if you have a better way.
+
+Feel free to use the source code anyway you like. I'd appreciate an email if
+you get use of this program or source code in any way...mainly to feed my over-
+inflated programmer's ego. :)   (mailto:warped42@ix.netcom.com) 
+
+Oh, and obviously, this program is freeware. Go forth and multiply the OS/2
+populations though petitioning software/hardware designers to support OS/2 if
+you feel you owe me anything. :)   Enjoy.
+
+                                    --Ryan C. Gordon
+                                         Lighting and Sound Technologies, 1996.
+

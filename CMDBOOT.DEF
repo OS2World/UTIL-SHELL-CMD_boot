@@ -1,0 +1,14 @@
+;----------------------------------------
+; CMDBOOT.DEF module definition file v1.0
+;----------------------------------------
+
+NAME           CMDBOOT  WINDOWCOMPAT
+
+DESCRIPTION    'Optional shell before WPS loads by Ryan C. Gordon, 1996.'
+STACKSIZE      20000
+STUB		   NONE
+BASE=0x10000
+PROTMODE
+
+; end of cmdboot.def
+
